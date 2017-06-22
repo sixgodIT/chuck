@@ -11,7 +11,7 @@ The main Chuck activity is launched in its own task, allowing it to be displayed
 
 ![Multi-Window](assets/multiwindow.gif)
 
-Chuck requires Android 4.1+ and OkHttp 3.x.
+Chuck requires Android 4.0+ and OkHttp 2.x.
 
 **Warning**: The data generated and stored when using this interceptor may contain sensitive information such as Authorization or Cookie headers, and the contents of request and response bodies. It is intended for use during development, and not in release builds or other production deployments.
 
@@ -20,19 +20,31 @@ Setup
 
 Add the dependency in your `build.gradle` file. Add it alongside the `no-op` variant to isolate Chuck from release builds as follows:
 
+Step 1. Add the JitPack repository to your build file
+
+Add it in your root build.gradle at the end of repositories:
+
+```gradle
+ allprojects {
+ 		repositories {
+ 			...
+ 			maven { url 'https://jitpack.io' }
+ 		}
+ 	}
+```
+Step 2. Add the dependency
 ```gradle
  dependencies {
-   debugCompile 'com.readystatesoftware.chuck:library:1.0.4'
-   releaseCompile 'com.readystatesoftware.chuck:library-no-op:1.0.4'
+   debugCompile 'com.github.sixgodIT.chuck:library:1.0.4'
+   releaseCompile 'com.github.sixgodIT.chuck:library-no-op:1.0.4'
  }
 ```
 
 In your application code, create an instance of `ChuckInterceptor` (you'll need to provide it with a `Context`, because Android) and add it as an interceptor when building your OkHttp client:
 
 ```java
-OkHttpClient client = new OkHttpClient.Builder()
-  .addInterceptor(new ChuckInterceptor(context))
-  .build();
+OkHttpClient client = new OkHttpClient();
+client.interceptors().add((new ChuckInterceptor(context));
 ```
 
 That's it! Chuck will now record all HTTP interactions made by your OkHttp client. You can optionally disable the notification by calling `showNotification(false)` on the interceptor instance, and launch the Chuck UI directly within your app with the intent from `Chuck.getLaunchIntent()`.
