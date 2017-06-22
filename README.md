@@ -1,6 +1,6 @@
 Chuck
 =====
-本项目对chuck进行修改，支持okhttp2.+，添加了chuck桌面打开方式，如果项目使用okhttp3.+请直接查看fork原项目https://github.com/jgilfelt/chuck。
+本项目对chuck进行修改，支持okhttp2.+，添加了chuck桌面打开方式，如果项目使用okhttp3.+请直接查看fork原项目https://github.com/jgilfelt/chuck
 
 Chuck is a simple in-app HTTP inspector for Android OkHttp clients. Chuck intercepts and persists all HTTP requests and responses inside your application, and provides a UI for inspecting their content.
 
