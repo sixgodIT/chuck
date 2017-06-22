@@ -35,8 +35,8 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 ```gradle
  dependencies {
-   debugCompile 'com.github.sixgodIT.chuck:library:1.0.4'
-   releaseCompile 'com.github.sixgodIT.chuck:library-no-op:1.0.4'
+   debugCompile 'com.github.sixgodIT.chuck:library:v2.0.1'
+   releaseCompile 'com.github.sixgodIT.chuck:library-no-op:v2.0.1'
  }
 ```
 
