@@ -15,23 +15,32 @@
  ~ limitations under the License.
  -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.readystatesoftware.chuck">
+          package="com.readystatesoftware.chuck">
+
     <application>
         <provider
             android:name=".internal.data.ChuckContentProvider"
             android:authorities="${applicationId}.chuck.provider"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".internal.ui.MainActivity"
             android:label="@string/chuck_name"
             android:launchMode="singleTask"
             android:taskAffinity="com.readystatesoftware.chuck.task"
-            android:theme="@style/Chuck.Theme" />
-        <activity android:name=".internal.ui.TransactionActivity"
-            android:theme="@style/Chuck.Theme"
-            android:parentActivityName=".internal.ui.MainActivity"/>
+            android:theme="@style/Chuck.Theme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".internal.ui.TransactionActivity"
+            android:parentActivityName=".internal.ui.MainActivity"
+            android:theme="@style/Chuck.Theme"/>
+
         <service
             android:name=".internal.support.ClearTransactionsService"
-            android:exported="false" />
+            android:exported="false"/>
     </application>
 </manifest>
