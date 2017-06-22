@@ -1,5 +1,6 @@
 Chuck
 =====
+本项目对chuck进行修改，支持okhttp2.+，添加了chuck桌面打开方式，如果项目使用okhttp3.+请直接查看fork原项目https://github.com/jgilfelt/chuck。
 
 Chuck is a simple in-app HTTP inspector for Android OkHttp clients. Chuck intercepts and persists all HTTP requests and responses inside your application, and provides a UI for inspecting their content.
 
@@ -44,7 +45,10 @@ In your application code, create an instance of `ChuckInterceptor` (you'll need 
 
 ```java
 OkHttpClient client = new OkHttpClient();
-client.interceptors().add((new ChuckInterceptor(context));
+//使用interceptors不能拦截到cookie
+//client.interceptors().add((new ChuckInterceptor(context));
+//networkInterceptors可以拦截到cookie。
+client.networkInterceptors().add((new ChuckInterceptor(context));
 ```
 
 That's it! Chuck will now record all HTTP interactions made by your OkHttp client. You can optionally disable the notification by calling `showNotification(false)` on the interceptor instance, and launch the Chuck UI directly within your app with the intent from `Chuck.getLaunchIntent()`.
