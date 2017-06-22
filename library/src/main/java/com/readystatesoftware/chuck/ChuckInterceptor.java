@@ -20,11 +20,19 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 
+import com.readystatesoftware.chuck.internal.HttpHeaders;
 import com.readystatesoftware.chuck.internal.data.ChuckContentProvider;
 import com.readystatesoftware.chuck.internal.data.HttpTransaction;
 import com.readystatesoftware.chuck.internal.data.LocalCupboard;
 import com.readystatesoftware.chuck.internal.support.NotificationHelper;
 import com.readystatesoftware.chuck.internal.support.RetentionManager;
+import com.squareup.okhttp.Headers;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+import com.squareup.okhttp.ResponseBody;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -33,14 +41,6 @@ import java.nio.charset.UnsupportedCharsetException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Headers;
-import okhttp3.Interceptor;
-import okhttp3.MediaType;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import okhttp3.internal.http.HttpHeaders;
 import okio.Buffer;
 import okio.BufferedSource;
 import okio.GzipSource;
@@ -112,7 +112,7 @@ public final class ChuckInterceptor implements Interceptor {
         this.maxContentLength = max;
         return this;
     }
-  
+
     /**
      * Set the retention period for HTTP transaction data captured by this interceptor.
      * The default is one week.
@@ -125,7 +125,8 @@ public final class ChuckInterceptor implements Interceptor {
         return this;
     }
 
-    @Override public Response intercept(Chain chain) throws IOException {
+    @Override
+    public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
 
         RequestBody requestBody = request.body();
@@ -302,7 +303,7 @@ public final class ChuckInterceptor implements Interceptor {
 
     private BufferedSource getNativeSource(Response response) throws IOException {
         if (bodyGzipped(response.headers())) {
-            BufferedSource source = response.peekBody(maxContentLength).source();
+            BufferedSource source = peekBody(response, maxContentLength).source();
             if (source.buffer().size() < maxContentLength) {
                 return getNativeSource(source, true);
             } else {
@@ -311,4 +312,23 @@ public final class ChuckInterceptor implements Interceptor {
         }
         return response.body().source();
     }
+
+    public ResponseBody peekBody(Response response, long byteCount) throws IOException {
+        BufferedSource source = response.body().source();
+        source.request(byteCount);
+        Buffer copy = source.buffer().clone();
+
+        // There may be more than byteCount bytes in source.buffer(). If there is, return a prefix.
+        Buffer result;
+        if (copy.size() > byteCount) {
+            result = new Buffer();
+            result.write(copy, byteCount);
+            copy.clear();
+        } else {
+            result = copy;
+        }
+
+        return ResponseBody.create(response.body().contentType(), result.size(), result);
+    }
+
 }

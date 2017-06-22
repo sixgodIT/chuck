@@ -20,6 +20,7 @@ import android.net.Uri;
 import com.google.gson.reflect.TypeToken;
 import com.readystatesoftware.chuck.internal.support.FormatUtils;
 import com.readystatesoftware.chuck.internal.support.JsonConvertor;
+import com.squareup.okhttp.Headers;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,7 +29,6 @@ import java.util.List;
 import java.util.Locale;
 
 import nl.qbusict.cupboard.annotation.Index;
-import okhttp3.Headers;
 
 public class HttpTransaction {
 

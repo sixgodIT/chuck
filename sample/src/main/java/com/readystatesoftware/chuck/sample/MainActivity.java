@@ -23,12 +23,12 @@ import android.view.View;
 
 import com.readystatesoftware.chuck.Chuck;
 import com.readystatesoftware.chuck.ChuckInterceptor;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import retrofit.Callback;
+import retrofit.Response;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,11 +51,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private OkHttpClient getClient(Context context) {
-        return new OkHttpClient.Builder()
-                // Add a ChuckInterceptor instance to your OkHttp client
-                .addInterceptor(new ChuckInterceptor(context))
-                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .build();
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.interceptors().add(new ChuckInterceptor(context));
+        okHttpClient.interceptors().add(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
+        return okHttpClient;
     }
 
     private void launchChuckDirectly() {
@@ -66,8 +65,15 @@ public class MainActivity extends AppCompatActivity {
     private void doHttpActivity() {
         SampleApiService.HttpbinApi api = SampleApiService.getInstance(getClient(this));
         Callback<Void> cb = new Callback<Void>() {
-            @Override public void onResponse(Call call, Response response) {}
-            @Override public void onFailure(Call call, Throwable t) { t.printStackTrace(); }
+            @Override
+            public void onResponse(Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+            }
         };
         api.get().enqueue(cb);
         api.post(new SampleApiService.Data("posted")).enqueue(cb);

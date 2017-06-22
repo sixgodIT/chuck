@@ -15,19 +15,21 @@
  */
 package com.readystatesoftware.chuck.sample;
 
-import okhttp3.OkHttpClient;
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
-import retrofit2.http.DELETE;
-import retrofit2.http.GET;
-import retrofit2.http.Header;
-import retrofit2.http.PATCH;
-import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+
+import com.squareup.okhttp.OkHttpClient;
+
+import retrofit.Call;
+import retrofit.GsonConverterFactory;
+import retrofit.Retrofit;
+import retrofit.http.Body;
+import retrofit.http.DELETE;
+import retrofit.http.GET;
+import retrofit.http.Header;
+import retrofit.http.PATCH;
+import retrofit.http.POST;
+import retrofit.http.PUT;
+import retrofit.http.Path;
+import retrofit.http.Query;
 
 class SampleApiService {
 

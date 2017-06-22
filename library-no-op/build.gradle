@@ -10,7 +10,7 @@ android {
 }
 
 dependencies {
-    compile "com.squareup.okhttp3:okhttp:$okhttp3Version"
+    compile "com.squareup.okhttp:okhttp:$okhttpVersion"
 }
 
 apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
