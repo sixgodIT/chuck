@@ -21,7 +21,6 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.readystatesoftware.chuck.internal.HttpHeaders;
-import com.readystatesoftware.chuck.internal.data.ChuckContentProvider;
 import com.readystatesoftware.chuck.internal.data.HttpTransaction;
 import com.readystatesoftware.chuck.internal.data.LocalCupboard;
 import com.readystatesoftware.chuck.internal.support.NotificationHelper;
@@ -75,6 +74,7 @@ public final class ChuckInterceptor implements Interceptor {
     private static final Charset UTF8 = Charset.forName("UTF-8");
 
     private final Context context;
+    private final String mApplicationId;
     private final NotificationHelper notificationHelper;
     private RetentionManager retentionManager;
     private boolean showNotification;
@@ -83,8 +83,9 @@ public final class ChuckInterceptor implements Interceptor {
     /**
      * @param context The current Context.
      */
-    public ChuckInterceptor(Context context) {
+    public ChuckInterceptor(Context context, String applicationId) {
         this.context = context.getApplicationContext();
+        mApplicationId = applicationId;
         notificationHelper = new NotificationHelper(this.context);
         showNotification = true;
         retentionManager = new RetentionManager(this.context, DEFAULT_RETENTION);
@@ -223,7 +224,7 @@ public final class ChuckInterceptor implements Interceptor {
 
     private Uri create(HttpTransaction transaction) {
         ContentValues values = LocalCupboard.getInstance().withEntity(HttpTransaction.class).toContentValues(transaction);
-        Uri uri = context.getContentResolver().insert(ChuckContentProvider.TRANSACTION_URI, values);
+        Uri uri = context.getContentResolver().insert(Uri.parse("content://" + mApplicationId + ".chuck.provider" + "/transaction"), values);
         transaction.setId(Long.valueOf(uri.getLastPathSegment()));
         if (showNotification) {
             notificationHelper.show(transaction);
