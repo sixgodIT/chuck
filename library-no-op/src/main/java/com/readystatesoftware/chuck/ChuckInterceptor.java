@@ -36,7 +36,7 @@ public final class ChuckInterceptor implements Interceptor {
         FOREVER
     }
 
-    public ChuckInterceptor(Context context) {
+    public ChuckInterceptor(Context context, String applicationId) {
     }
 
     public ChuckInterceptor showNotification(boolean show) {
