@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     private OkHttpClient getClient(Context context) {
         OkHttpClient okHttpClient = new OkHttpClient();
-        okHttpClient.interceptors().add(new ChuckInterceptor(context));
+        okHttpClient.interceptors().add(new ChuckInterceptor(context, BuildConfig.APPLICATION_ID));
         okHttpClient.interceptors().add(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
         return okHttpClient;
     }
