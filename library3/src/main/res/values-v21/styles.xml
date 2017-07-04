@@ -14,12 +14,14 @@
  ~ See the License for the specific language governing permissions and
  ~ limitations under the License.
  -->
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="vertical"
-    tools:context=".internal.ui.TransactionListFragment"
-    tools:listitem="@layout/chuck_list_item_transaction" />
+<resources>
+    <style name="Chuck.TextAppearance.ListItem" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="Chuck.TextAppearance.Label" parent="android:TextAppearance.Small">
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+</resources>

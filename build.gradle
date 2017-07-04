@@ -33,4 +33,6 @@ ext {
 
     supportLibVersion = '25.3.0'
     okhttpVersion = '2.7.5'
+    okhttp3Version = '3.6.0'
+
 }
