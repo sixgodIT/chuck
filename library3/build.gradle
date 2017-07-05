@@ -8,6 +8,9 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         consumerProguardFiles 'proguard-rules.pro'
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
