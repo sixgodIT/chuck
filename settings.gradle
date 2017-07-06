@@ -1,1 +1,1 @@
-include ':sample', ':okhttp', ':okhttp-no-op', ':okhttp3', ':okhttp3-no-op'
+include ':sample', ':okhttp', ':okhttp-no-op', ':okhttp3', ':okhttp3-no-op',':sample3'

@@ -26,7 +26,12 @@
             android:label="@string/chuck_name"
             android:launchMode="singleTask"
             android:taskAffinity="com.readystatesoftware.chuck.task"
-            android:theme="@style/Chuck.Theme" />
+            android:theme="@style/Chuck.Theme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".internal.ui.TransactionActivity"
             android:theme="@style/Chuck.Theme"
             android:parentActivityName=".internal.ui.MainActivity"/>
