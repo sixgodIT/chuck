@@ -1,4 +1,5 @@
-Chuck[![](https://jitpack.io/v/sixgodIT/chuck.svg)](https://jitpack.io/#sixgodIT/chuck)
+Chuck
+[![](https://jitpack.io/v/sixgodIT/chuck.svg)](https://jitpack.io/#sixgodIT/chuck)
 =====
 本项目对chuck进行修改，支持okhttp2.+，添加了chuck桌面打开方式
 
@@ -34,6 +35,7 @@ Add it in your root build.gradle at the end of repositories:
  	}
 ```
 Step 2. Add the dependency [![](https://jitpack.io/v/sixgodIT/chuck.svg)](https://jitpack.io/#sixgodIT/chuck)
+
 okhttp2.+
 ```gradle
  dependencies {
