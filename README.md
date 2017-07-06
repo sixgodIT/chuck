@@ -57,9 +57,9 @@ okhttp2.+
 ```java
 OkHttpClient client = new OkHttpClient();
 //使用interceptors不能拦截到cookie
-//client.interceptors().add((new ChuckInterceptor(context));
+//client.interceptors().add((new ChuckInterceptor(context, BuildConfig.APPLICATION_ID));
 //networkInterceptors可以拦截到cookie。
-client.networkInterceptors().add((new ChuckInterceptor(context));
+client.networkInterceptors().add((new ChuckInterceptor(context, BuildConfig.APPLICATION_ID));
 ```
 okhttp3.+
 ```java
