@@ -28,8 +28,8 @@ android {
 }
 
 dependencies {
-    debugCompile project(':library')
-    releaseCompile project(':library-no-op')
+    debugCompile project(':okhttp')
+    releaseCompile project(':okhttp-no-op')
     compile "com.android.support:appcompat-v7:$supportLibVersion"
     compile "com.squareup.okhttp:logging-interceptor:$okhttpVersion"
     compile 'com.squareup.retrofit:retrofit:2.0.0-beta1'
