@@ -1,1 +1,1 @@
-include ':sample', ':library', ':library-no-op'
+include ':sample', ':library', ':library-no-op', ':okhttp3', ':okhttp3-no-op'
