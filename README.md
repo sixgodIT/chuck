@@ -53,6 +53,7 @@ okhttp3.+
 
 In your application code, create an instance of `ChuckInterceptor` (you'll need to provide it with a `Context`, because Android) and add it as an interceptor when building your OkHttp client:
 
+okhttp2.+
 ```java
 OkHttpClient client = new OkHttpClient();
 //使用interceptors不能拦截到cookie
@@ -60,7 +61,12 @@ OkHttpClient client = new OkHttpClient();
 //networkInterceptors可以拦截到cookie。
 client.networkInterceptors().add((new ChuckInterceptor(context));
 ```
-
+okhttp3.+
+```java
+ OkHttpClient
+       .Builder()
+       .addNetworkInterceptor(new ChuckInterceptor(context, BuildConfig.APPLICATION_ID))
+```
 That's it! Chuck will now record all HTTP interactions made by your OkHttp client. You can optionally disable the notification by calling `showNotification(false)` on the interceptor instance, and launch the Chuck UI directly within your app with the intent from `Chuck.getLaunchIntent()`.
 
 FAQ
