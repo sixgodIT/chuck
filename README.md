@@ -1,6 +1,6 @@
-Chuck
+Chuck[![](https://jitpack.io/v/sixgodIT/chuck.svg)](https://jitpack.io/#sixgodIT/chuck)
 =====
-本项目对chuck进行修改，支持okhttp2.+，添加了chuck桌面打开方式，如果项目使用okhttp3.+请直接查看fork原项目https://github.com/jgilfelt/chuck
+本项目对chuck进行修改，支持okhttp2.+，添加了chuck桌面打开方式
 
 Chuck is a simple in-app HTTP inspector for Android OkHttp clients. Chuck intercepts and persists all HTTP requests and responses inside your application, and provides a UI for inspecting their content.
 
@@ -33,11 +33,19 @@ Add it in your root build.gradle at the end of repositories:
  		}
  	}
 ```
-Step 2. Add the dependency
+Step 2. Add the dependency [![](https://jitpack.io/v/sixgodIT/chuck.svg)](https://jitpack.io/#sixgodIT/chuck)
+okhttp2.+
 ```gradle
  dependencies {
-   debugCompile 'com.github.sixgodIT.chuck:library:2.0.4'
-   releaseCompile 'com.github.sixgodIT.chuck:library-no-op:2.0.4'
+   debugCompile 'com.github.sixgodIT.chuck:okhttp:2.3.0'
+   releaseCompile 'com.github.sixgodIT.chuck:okhttp-no-op:2.3.0'
+ }
+```
+okhttp3.+
+```gradle
+ dependencies {
+   debugCompile 'com.github.sixgodIT.chuck:okhttp3:2.3.0'
+   releaseCompile 'com.github.sixgodIT.chuck:okhttp3-no-op:2.3.0'
  }
 ```
 
