@@ -1,1 +1,1 @@
-include ':sample', ':library', ':library-no-op', ':library3', ':library3-no-op', ':sample3'
+include ':sample', ':library', ':library-no-op', ':library3', ':library3-no-op', ':sample3', ':librarynew'
